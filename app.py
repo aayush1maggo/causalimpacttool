@@ -3,6 +3,10 @@ warnings.filterwarnings("ignore")
 
 import streamlit as st
 import pandas as pd
+
+# pycausalimpact uses DataFrame.applymap, removed in pandas 2.2 (renamed to .map)
+if not hasattr(pd.DataFrame, "applymap"):
+    pd.DataFrame.applymap = pd.DataFrame.map
 import numpy as np
 import plotly.graph_objects as go
 from causalimpact import CausalImpact
